@@ -1,0 +1,35 @@
+{
+    "name": "mobyinc/craft-twitter-feed",
+    "description": "Craft CMS plugin to retrieve, cache & make Twitter feed data available in Twig.",
+    "version": "1.0.0",
+    "type": "craft-plugin",
+    "keywords": ["twitter", "craftcms", "craft3", "plugin"],
+    "license": "MIT",
+    "authors": [
+      {
+        "name": "Moby, Inc.",
+        "homepage": "https://mobyinc.com"
+      }
+    ],
+    "support": {
+      "email": "hello@mobyinc.com",
+      "issues": "https://github.com/mobyinc/craft-twitter-feed/issues?state=open",
+      "source": "https://github.com/mobyinc/craft-twitter-feed",
+      "docs": "https://github.com/mobyinc/craft-twitter-feed/blob/master/README.md"
+    },
+    "require": {
+      "craftcms/cms": "^3.1.0",
+      "ext-json": "*"
+    },
+    "autoload": {
+      "psr-4": {
+        "mobyinc\\twitterfeed\\": "src/"
+      }
+    },
+    "extra": {
+      "handle": "craft-twitter-feed",
+      "name": "Craft Twitter Feed",
+      "description" : "Twitter feed data available as variable in templates.",
+      "documentationUrl": "https://github.com/mobyinc/craft-twitter-feed/blob/master/README.md"
+    }
+  }
