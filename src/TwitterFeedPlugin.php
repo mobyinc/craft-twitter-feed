@@ -3,6 +3,7 @@
 namespace mobyinc\twitterfeed;
 
 use craft\base\Plugin;
+use mobyinc\twitterfeed\models\Settings;
 
 class TwitterFeedPlugin extends Plugin
 {
