@@ -1,0 +1,11 @@
+{% import "_includes/forms" as forms %}
+
+{{ forms.textField({
+    label: "Handle"|t("twitterfeed"),
+    id: 'twitterHandle',
+    name: 'twitterHandle',
+    instructions: "Provide a public Twitter profile handle."|t("twitterfeed"),
+    value: settings.twitterHandle,
+    type: 'text',
+    required: true
+}) }}
