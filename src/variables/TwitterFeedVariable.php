@@ -6,8 +6,66 @@ use mobyinc\twitterfeed\TwitterFeedPlugin;
 
 class TwitterFeedVariable
 {
-    public function getFeed($account = null)
+    /** @var object Instance of TwitterFeedPlugin class */
+    protected $instance;
+
+    /**
+     * Construct instance of plugin class
+     */
+    public function __construct()
     {
-        return TwitterFeedPlugin::getInstance()->twitterService->getFeed($account);
+        $this->instance = TwitterFeedPlugin::getInstance();
+    }
+
+    /**
+     * Retrieve tweet from cache or do API request
+     *
+     * @param string|null $handle 
+     * @return object|null
+     */
+    public function getLatestTweet($handle = null)
+    {
+        $handle = $handle ?: $this->instance->getSettings()->twitterHandle;
+
+        if (!$handle)
+        {
+            Craft::warning('No handle provided for getLatestTweet.', __METHOD__); 
+            return;
+        }
+
+        $tweet = craft()->cache->get(`latest_tweet_from_${handle}`);
+
+        if(!$tweet)
+        {
+            try {
+                $tweet = $this->instance->twitterService
+                ->buildOauth('https://api.twitter.com/1.1/statuses/user_timeline.jsoon', 'GET')
+                ->setGetfields([
+                    'screen_name' => $handle,
+                    'exclude_replies' => true,
+                    'count' => 1,
+                ])
+                ->performRequest();
+            } catch (Exception $e) {
+                return;
+            }
+
+            if ($tweet) {
+                craft()->cache->set(`latest_tweet_from_{$handle}`, $tweet);
+            }
+        }
+
+        return json_decode($tweet);
+    }
+
+    /**
+     * Alias for getLatestTweet
+     *
+     * @param string|null $handle 
+     * @return object
+     */
+    public function getLatestTweetFrom($handle = null)
+    {
+        return $this->getLatestTweet($handle);
     }
 }
