@@ -9,3 +9,43 @@
     type: 'text',
     required: true
 }) }}
+
+{{ forms.textField({
+    label: "OAuth Access Token"|t("twitterfeed"),
+    id: 'oauthAccessToken',
+    name: 'oauthAccessToken',
+    instructions: ""|t("twitterfeed"),
+    value: settings.oauthAccessToken,
+    type: 'text',
+    required: true
+}) }}
+
+{{ forms.textField({
+    label: "OAuth Access Token Secret Key"|t("twitterfeed"),
+    id: 'oauthAccessTokenSecret',
+    name: 'oauthAccessTokenSecret',
+    instructions: ""|t("twitterfeed"),
+    value: settings.oauthAccessTokenSecret,
+    type: 'text',
+    required: true
+}) }}
+
+{{ forms.textField({
+    label: "Consumer Key"|t("twitterfeed"),
+    id: 'consumerKey',
+    name: 'consumerKey',
+    instructions: ""|t("twitterfeed"),
+    value: settings.consumerKey,
+    type: 'text',
+    required: true
+}) }}
+
+{{ forms.textField({
+    label: "Consumer Secrey Key"|t("twitterfeed"),
+    id: 'consumerSecret',
+    name: 'consumerSecret',
+    instructions: ""|t("twitterfeed"),
+    value: settings.consumerSecret,
+    type: 'text',
+    required: true
+}) }}

@@ -21,6 +21,14 @@ class TwitterFeedPlugin extends Plugin
     public function afterInstall()
     {
         parent::afterInstall();
+
+        if (Craft::$app->getRequest()->getIsConsoleRequest()) {
+            return;
+        }
+
+        Craft::$app->getResponse()->redirect(
+            UrlHelper::cpUrl('settings/plugins/twitterfeed')
+        )->send();
     }
 
     /**
@@ -36,6 +44,8 @@ class TwitterFeedPlugin extends Plugin
      */
     protected function settingsHtml()
     {
-        //
+        return Craft::$app->getView()->renderTemplate('twitterfeed/settings', [
+            'settings' => $this->getSettings()
+        ]);
     }
 }
