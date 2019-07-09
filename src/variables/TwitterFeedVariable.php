@@ -41,7 +41,7 @@ class TwitterFeedVariable
         {
             try {
                 $tweet = $this->instance->twitterService
-                ->buildOauth('https://api.twitter.com/1.1/statuses/user_timeline.jsoon', 'GET')
+                ->buildOauth('https://api.twitter.com/1.1/statuses/user_timeline.jsoon', 'POST')
                 ->setPostfields([
                     'screen_name' => $handle,
                     'exclude_replies' => true,
