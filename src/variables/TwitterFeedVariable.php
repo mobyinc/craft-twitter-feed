@@ -3,6 +3,7 @@
 namespace mobyinc\twitterfeed\variables;
 
 use mobyinc\twitterfeed\TwitterFeedPlugin;
+use yii\caching\Cache;
 
 class TwitterFeedVariable
 {
@@ -15,6 +16,7 @@ class TwitterFeedVariable
     public function __construct()
     {
         $this->instance = TwitterFeedPlugin::getInstance();
+        $this->cache = new Cache;
     }
 
     /**
@@ -33,7 +35,7 @@ class TwitterFeedVariable
             return;
         }
 
-        $tweet = craft()->cache->get(`latest_tweet_from_${handle}`);
+        $tweet = $this->cache->get(`latest_tweet_from_${handle}`);
 
         if(!$tweet)
         {
@@ -51,7 +53,7 @@ class TwitterFeedVariable
             }
 
             if ($tweet) {
-                craft()->cache->set(`latest_tweet_from_{$handle}`, $tweet);
+                $this->cache->set(`latest_tweet_from_{$handle}`, $tweet);
             }
         }
 
