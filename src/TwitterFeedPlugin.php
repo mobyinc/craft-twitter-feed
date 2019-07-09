@@ -32,7 +32,7 @@ class TwitterFeedPlugin extends Plugin
 
         Event::on(CraftVariable::class, CraftVariable::EVENT_INIT, function(Event $event) {
             $variable = $event->sender;
-            $variable->set('instagram', TwitterFeedVariable::class);
+            $variable->set('twitter', TwitterFeedVariable::class);
         });
     }
 
