@@ -2,11 +2,16 @@
 
 namespace mobyinc\twitterfeed;
 
+use yii\base\Event;
+
 use Craft;
 use craft\base\Plugin;
 use craft\helpers\UrlHelper;
+use craft\web\twig\variables\CraftVariable;
 
 use mobyinc\twitterfeed\models\Settings;
+use mobyinc\twitterfeed\services\TwitterService;
+use mobyinc\twitterfeed\variables\TwitterFeedVariable;
 
 class TwitterFeedPlugin extends Plugin
 {
@@ -20,6 +25,15 @@ class TwitterFeedPlugin extends Plugin
     public function init()
     {
         parent::init();
+
+        $this->setComponents([
+            'twitterService' => TwitterService::class,
+        ]);
+
+        Event::on(CraftVariable::class, CraftVariable::EVENT_INIT, function(Event $event) {
+            $variable = $event->sender;
+            $variable->set('instagram', TwitterFeedVariable::class);
+        });
     }
 
     /**
