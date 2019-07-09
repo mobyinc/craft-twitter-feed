@@ -49,6 +49,7 @@ class TwitterFeedVariable
                 ])
                 ->performRequest();
             } catch (Exception $e) {
+                Craft::warning('Accessing Twitter OAuth failed.', __METHOD__); 
                 return $e->getMessage();
             }
 
