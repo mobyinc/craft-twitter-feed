@@ -10,6 +10,10 @@ use mobyinc\twitterfeed\models\Settings;
 
 class TwitterFeedPlugin extends Plugin
 {
+
+    /** @var */
+    public $hasCpSettings = true;
+
     /**
      * @inheritDoc
      */
