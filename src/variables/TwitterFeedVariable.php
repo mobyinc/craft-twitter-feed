@@ -49,7 +49,7 @@ class TwitterFeedVariable
                 ])
                 ->performRequest();
             } catch (Exception $e) {
-                return;
+                return $e->getMessage();
             }
 
             if ($tweet) {
