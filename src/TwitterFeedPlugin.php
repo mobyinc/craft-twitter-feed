@@ -2,7 +2,10 @@
 
 namespace mobyinc\twitterfeed;
 
+use Craft;
 use craft\base\Plugin;
+use craft\helpers\UrlHelper;
+
 use mobyinc\twitterfeed\models\Settings;
 
 class TwitterFeedPlugin extends Plugin
