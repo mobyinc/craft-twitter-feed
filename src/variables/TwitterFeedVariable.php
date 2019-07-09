@@ -29,6 +29,7 @@ class TwitterFeedVariable
     public function getLatestTweet($handle = null)
     {
         $handle = $handle ?: $this->instance->getSettings()->twitterHandle;
+        Craft::warning('getLatestTweet requested.', __METHOD__); 
 
         if (!$handle)
         {
@@ -40,6 +41,7 @@ class TwitterFeedVariable
 
         if(!$tweet)
         {
+            Craft::info('Starting Twitter API query.', __METHOD__); 
             try {
                 $tweet = $this->instance->twitterService
                 ->buildOauth('https://api.twitter.com/1.1/statuses/user_timeline.jsoon', 'POST')
@@ -50,15 +52,16 @@ class TwitterFeedVariable
                 ])
                 ->performRequest();
             } catch (Exception $e) {
-                Craft::warning('Accessing Twitter OAuth failed.', __METHOD__); 
+                Craft::warning('Twitter API query failed.', __METHOD__); 
                 return $e->getMessage();
             }
 
             if ($tweet) {
+                Craft::info("Storing Twitter result in cache for {$handle}", __METHOD__); 
                 $this->cache->set(`latest_tweet_from_{$handle}`, $tweet);
             }
         }
-
+        Craft::info('Returning Twitter results.', __METHOD__); 
         return json_decode($tweet);
     }
 
