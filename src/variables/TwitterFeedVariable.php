@@ -39,7 +39,7 @@ class TwitterFeedVariable
 
         $tweet = $this->cache->get(`latest_tweet_from_${handle}`);
 
-        if(!$tweet || $tweet === null)
+        if(!$tweet || $tweet === NULL)
         {
             Craft::info('Starting Twitter API query.', __METHOD__); 
             try {
