@@ -60,6 +60,13 @@ class TwitterService extends Component
     protected $httpStatusCode;
 
     /**
+     * Instance of plugin class
+     *
+     * @var object
+     */
+    protected $instance;
+
+    /**
      * Create the API access object. Requires an array of settings::
      * oauth access token, oauth access token secret, consumer key, consumer secret
      * These are all available by creating your own application on dev.twitter.com
