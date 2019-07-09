@@ -70,7 +70,7 @@ class TwitterService extends Component
      *
      * @param array $settings
      */
-    public function __construct(array $settings)
+    public function __construct(array $settings = [])
     {
         if (!function_exists('curl_init'))
         {
