@@ -3,7 +3,7 @@
 namespace mobyinc\twitterfeed\variables;
 
 use mobyinc\twitterfeed\TwitterFeedPlugin;
-use yii\caching\Cache;
+use yii\caching\ApcCache as Cache;
 
 class TwitterFeedVariable
 {
