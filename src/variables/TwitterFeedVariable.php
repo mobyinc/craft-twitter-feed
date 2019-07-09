@@ -2,6 +2,7 @@
 
 namespace mobyinc\twitterfeed\variables;
 
+use Craft; 
 use mobyinc\twitterfeed\TwitterFeedPlugin;
 use yii\caching\FileCache as Cache;
 
