@@ -44,12 +44,8 @@ class TwitterFeedVariable
             Craft::info('Starting Twitter API query.', __METHOD__); 
             try {
                 $tweet = $this->instance->twitterService
-                ->buildOauth('https://api.twitter.com/1.1/statuses/user_timeline.jsoon', 'POST')
-                ->setPostfields([
-                    'screen_name' => $handle,
-                    'exclude_replies' => true,
-                    'count' => 1,
-                ])
+                ->setGetfield("?screen_name={$handle}")
+                ->buildOauth('https://api.twitter.com/1.1/statuses/user_timeline.jsoon', 'GET')
                 ->performRequest();
             } catch (Exception $e) {
                 Craft::warning('Twitter API query failed.', __METHOD__); 
