@@ -37,28 +37,19 @@ class TwitterFeedVariable
             return;
         }
 
-        $tweet = $this->cache->get(`latest_tweet_from_${handle}`);
-
-        if(!$tweet || $tweet === NULL)
-        {
-            Craft::info('Starting Twitter API query.', __METHOD__); 
+        $tweets = $this->cache->getOrSet(`latest_tweets_from_${handle}`, function () use ($handle) {
             try {
-                $tweet = $this->instance->twitterService
-                ->setGetfield("?screen_name={$handle}&count=1")
-                ->buildOauth('https://api.twitter.com/1.1/statuses/user_timeline.jsoon', 'GET')
-                ->performRequest();
+                return $this->instance->twitterService
+                    ->setGetfield("?screen_name={$handle}&count=10")
+                    ->buildOauth('https://api.twitter.com/1.1/statuses/user_timeline.jsoon', 'GET')
+                    ->performRequest();
             } catch (Exception $e) {
-                Craft::warning('Twitter API query failed.', __METHOD__); 
-                return $e->getMessage();
+                return false;
             }
+        });
 
-            if ($tweet) {
-                Craft::info("Storing Twitter result in cache for {$handle}", __METHOD__); 
-                $this->cache->set(`latest_tweet_from_{$handle}`, $tweet);
-            }
-        }
         Craft::info('Returning Twitter results.', __METHOD__); 
-        return json_decode($tweet);
+        return json_decode($tweets);
     }
 
     /**
