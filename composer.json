@@ -1,7 +1,7 @@
 {
   "name": "mobyinc/craft-twitter-feed",
   "description": "Craft CMS plugin to retrieve, cache & make Twitter feed data available in Twig.",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "type": "craft-plugin",
   "keywords": ["twitter", "craftcms", "craft3", "plugin"],
   "license": "MIT",
