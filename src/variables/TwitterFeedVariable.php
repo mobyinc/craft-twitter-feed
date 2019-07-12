@@ -41,7 +41,7 @@ class TwitterFeedVariable
             try {
                 return $this->instance->twitterService
                     ->setGetfield("?screen_name={$handle}&count=10")
-                    ->buildOauth('https://api.twitter.com/1.1/statuses/user_timeline.jsoon', 'GET')
+                    ->buildOauth('https://api.twitter.com/1.1/statuses/user_timeline.json', 'GET')
                     ->performRequest();
             } catch (Exception $e) {
                 return false;
@@ -49,7 +49,8 @@ class TwitterFeedVariable
         });
 
         Craft::info('Returning Twitter results.', __METHOD__); 
-        return json_decode($tweets);
+        $tweets = json_decode($tweets);
+        return reset($tweets);
     }
 
     /**
