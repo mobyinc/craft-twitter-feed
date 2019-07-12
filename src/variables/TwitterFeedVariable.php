@@ -36,8 +36,8 @@ class TwitterFeedVariable
             Craft::warning('No handle provided for getLatestTweet.', __METHOD__); 
             return;
         }
-
-        $tweets = $this->cache->getOrSet(`latest_tweets_from_${handle}`, function () use ($handle) {
+        
+        $tweets = $this->cache->getOrSet("latest_tweets_from_${handle}", function () use ($handle) {
             try {
                 return $this->instance->twitterService
                     ->setGetfield("?screen_name={$handle}&count=10")
