@@ -49,3 +49,10 @@
     type: 'text',
     required: true
 }) }}
+
+<div class="field cache-list read-only language-json">
+    <div class="heading">
+        <label id="tweet-in-cache-label" for="settings-tweetInCache">Default Cached Tweet</label>
+    </div>
+    <code><pre class="language-json">{{ craft.twitter.getLatestTweet()|json_encode(constant('JSON_PRETTY_PRINT')) }}</pre></code>
+</div>
